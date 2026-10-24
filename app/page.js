@@ -1,5 +1,5 @@
 ﻿"use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import IslamicToolsBar from "@/components/IslamicToolsBar";
 
@@ -12,7 +12,7 @@ import AudioDuasAndRuqyahHub from "@/components/AudioDuasAndRuqyahHub";
 import DigitalEbooksLibraryHub from "@/components/DigitalEbooksLibraryHub";
 import StoriesAndSeerahEncyclopediaHub from "@/components/StoriesAndSeerahEncyclopediaHub";
 
-// 2. صانع الريلز القرآني والقصصي المطور
+// 2. صانع الريلز القرآني والقصصي
 import InteractiveReelsStudio from "@/components/InteractiveReelsStudio";
 import AdvancedReelsMaker from "@/components/AdvancedReelsMaker";
 
@@ -25,11 +25,15 @@ import DailyHadithHubTool from "@/components/DailyHadithHubTool";
 import MasterIslamicToolsHub from "@/components/MasterIslamicToolsHub";
 
 import LibrarySearchModal from "@/components/LibrarySearchModal";
-import { PLATFORM_INFO } from "@/lib/islamicData";
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState("quran");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [currentYear, setCurrentYear] = useState("2026");
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear().toString());
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950">
@@ -79,7 +83,7 @@ export default function HomePage() {
         {/* ك: مواقيت الصلاة اليوم بالـ GPS والتوقيت الفلكي */}
         {activeTab === "prayer_times" && <PrayerTimesLiveTool />}
 
-        {/* ل: اتجاه الققبلة التفاعلي والبوصلة الحية */}
+        {/* ل: اتجاه القبلة التفاعلي والبوصلة الحية */}
         {activeTab === "qibla" && <QiblaFinderTool />}
 
         {/* م: التقويم الإسلامي وتنزيل المناسبات (ICS / Google) */}
@@ -133,7 +137,7 @@ export default function HomePage() {
         </div>
 
         <div className="max-w-7xl mx-auto mt-6 pt-4 border-t border-slate-800/80 text-center text-[11px] text-slate-500">
-          جميع الحقوق محفوظة لمنصة مَدار | MADAR © {new Date().getFullYear()} — صدقة جارية ونشر للقرآن والسنّة الشريفة.
+          جميع الحقوق محفوظة لمنصة مَدار | MADAR © {currentYear} — صدقة جارية ونشر للقرآن والسنّة الشريفة.
         </div>
       </footer>
 
